@@ -1,0 +1,34 @@
+name: create_automated_tags
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  tagging:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [ '3.9' ]
+
+    steps:
+      # ------------------------------------------------------------------------
+      # Checkout the branch from the github repository that triggered the action
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      # ------------------------------------------------------------------------
+
+      - name: Print github.ref
+        run: echo ${{ github.ref }}
+
+      - name: Setup python
+        uses: "actions/setup-python@v2"
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Read tag-version
+        run: cat version.py
+  
