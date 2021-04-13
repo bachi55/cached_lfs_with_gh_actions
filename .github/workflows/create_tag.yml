@@ -31,4 +31,3 @@ jobs:
 
       - name: Read tag-version
         run: cat version.py
-  
