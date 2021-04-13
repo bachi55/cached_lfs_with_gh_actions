@@ -1,0 +1,3 @@
+name: test_cached_lfs_with_gh_actions
+dependencies:
+  - numpy
