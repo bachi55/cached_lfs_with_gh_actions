@@ -1,1 +1,1 @@
-Test for Github Actions Cached LSF
+Test for Github Actions with Cached LFS and Conda Environment
