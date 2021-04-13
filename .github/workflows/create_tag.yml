@@ -8,10 +8,6 @@ jobs:
   tagging:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [ '3.9' ]
-
     steps:
       # ------------------------------------------------------------------------
       # Checkout the branch from the github repository that triggered the action
@@ -21,14 +17,14 @@ jobs:
           ref: ${{ github.ref }}
       # ------------------------------------------------------------------------
 
-      - name: Print github.ref
-        run: echo ${{ github.ref }}
-
+      # --------------------------
+      # Setup a python environment
       - name: Setup python
         uses: "actions/setup-python@v2"
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.9'
+      # --------------------------
 
-      - name: Read tag-version
-        run: cat version.py
-  
+      - name: Create new tag based on version.py
+        run: git tag $(cut -d' ' -f3 version.py | sed 's/"//g')
+
