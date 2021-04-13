@@ -2,7 +2,9 @@ name: Test unittests with LFS caching
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
 
 jobs:
   build-linux:
@@ -10,7 +12,6 @@ jobs:
     strategy:
       matrix:
         python-version: [ '3.9' ]
-      max-parallel: 5
 
     defaults:
       run:
